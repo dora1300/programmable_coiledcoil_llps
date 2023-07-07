@@ -1,0 +1,68 @@
+; Topology file for a coil model
+; Includes .itp files, which are set manually
+; updated to include new VdW parameter format
+; This uses the modified topology parameters for specific oligomers
+; --
+; This is specifically for handling parallel and antiparallel coils
+; --
+; Updated 2023.04.04
+;
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               1               yes              1.0     0
+
+[ atomtypes ]
+;name   mass     charge   ptype  V(C6, attra)  W(C12, repul)
+ P1     109.0    0.000    A      6.9132E-03    5.97404E-05
+ P2     109.0    0.000    A      6.9132E-03    5.97404E-05
+ AP1    109.0    0.000    A      6.9132E-03    5.97404E-05
+ AP2    109.0    0.000    A      6.9132E-03    5.97404E-05
+ B      109.0    0.000    A      0             5.97404E-05
+ Di     109.0    0.000    A      6.9132E-03    5.97404E-05
+
+[ nonbond_params ]
+;i     j      func     V(C6, attra)    W(C12, repul)
+; self-self interactions
+ P1    P1     1        1.099512E+00     3.777893E-02
+ P2    P2     1        1.099512E+00     3.777893E-02
+ AP1   AP1    1        0                5.974044E-04
+ AP2   AP2    1        0                5.974044E-04
+ B     B      1        0                5.974044E-04
+ Di    Di     1        6.000000E+00     3.000000E+00
+ 
+; cross interactions specific for determining orientation
+ P1    P2     1        0                5.974044E-04
+ AP1   AP2    1        1.099512E+00     3.777893E-02
+ 
+; other cross interactions which are non interactions
+ P1    AP1    1        0                5.974044E-04
+ P1    AP2    1        0                5.974044E-04
+ P1    Di     1        0                5.974044E-04
+ P1    B      1        0                5.974044E-04
+
+ P2    AP1    1        0                5.974044E-04
+ P2    AP2    1        0                5.974044E-04
+ P2    Di     1        0                5.974044E-04
+ P2    B      1        0                5.974044E-04
+
+ AP1   Di     1        0                5.974044E-04
+ AP1   B      1        0                5.974044E-04
+
+ AP2   Di     1        0                5.974044E-04
+ AP2   B      1        0                5.974044E-04
+
+ Di    B      1        0                5.974044E-04
+
+
+; Include the individual .itps for different molecules
+; This is set MANUALLY - DONT FORGET!
+#include "itp_APPAPAPPAP.itp"
+
+[ system ]
+; Name
+pap-system
+
+[ molecules ]
+;moleculetype-name    # molecules
+APPAPAPPAP            48

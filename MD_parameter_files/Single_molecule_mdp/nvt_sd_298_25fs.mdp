@@ -1,0 +1,58 @@
+;
+;   NVT Equilibration MDP file
+;
+;   Designed specifically for single molecule simulations
+;       (part of the slab procedure)
+
+
+; ---- Run control
+integrator            = sd            ; stochastic dynamics integrator
+                                      ; when used, tcoupl and nsttcouple are ignored
+tinit                 = 0
+dt                    = 0.025         ; units of ps
+nsteps                = 20000         ; units of (ps) ==> total time = 500 ps
+comm-mode             = Linear        ; remove the center of mass translational velocity
+nstcomm               = 10            ; frequency for center of mass motion removal
+ld-seed               = -1            ; Need to randomize every time!!
+                                      ; random noise generator for thermal noise with sd
+
+
+
+; ---- Output control
+nstlog                = 1000
+nstcalcenergy         = 10
+nstenergy             = 1000
+nstxout-compressed    = 1000
+
+
+; ---- Neighbor searching and short-range nonbonded interactions
+cutoff-scheme            = Verlet
+nstlist                  = 10        ; default value for Gromacs 2022
+pbc                      = xyz
+verlet-buffer-tolerance  = 1E-7     ; kJ mol^-1 ps^-1
+
+; van der Waals
+vdw-type                = Cut-off
+vdw-modifier            = Potential-shift
+rvdw                    = 1.1
+
+; Electrostatics
+coulombtype             = Cut-off
+rcoulomb                = 1.1
+
+
+
+; ---- Pressure controlling and coupling
+pcoupl                  = no
+
+
+
+; ---- Velocity generation
+gen-vel                 = no         ; only useful for the md integrator
+
+
+
+; ---- Temperature controlling and Langevin noise
+tc-grps                 = System
+tau-t                   = 5        
+ref-t                   = 298      ; in units of (K)
