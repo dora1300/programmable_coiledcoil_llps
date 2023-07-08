@@ -51,7 +51,7 @@ We used following compilers were used to compile GROMACS:
 
 
 ### Requirements to run custom scripts
-Custom scripts -- which include the custom analysis scripts (see `Custom_scripts`, above) and the scripts used to make proteins (see `ProteinBuilding`, above) -- use python v3.9.13. Other versions of python have not been tested. The following dependencies are also needed:
+Custom scripts -- which include the custom analysis scripts (see `Custom_scripts`, above) and the scripts used to make proteins (see `ProteinBuilding`, above) -- use python v3.9. Other versions of python have not been tested. The following dependencies are also needed:
 - matplotlib (3.7.1)
 - numpy (1.21.5)
 - mdtraj (1.9.7)
