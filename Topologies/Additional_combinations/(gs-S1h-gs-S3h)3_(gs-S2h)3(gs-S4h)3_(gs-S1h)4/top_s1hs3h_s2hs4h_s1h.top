@@ -1,0 +1,81 @@
+; Topology file for a coil model
+; Includes .itp files, which are set manually
+; updated to include new VdW parameter format
+; This uses the modified topology parameters for specific oligomers
+; Updated 2022.10.14
+;
+; This topology is specifically for the DAR5-1 MCP simulation
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               1               yes              1.0     0
+
+[ atomtypes ]
+;name   mass     charge   ptype  V(C6, attra)  W(C12, repul)
+ A1     109.0    0.000   A        6.9132E-03    5.97404E-05
+ A2     109.0    0.000   A        6.9132E-03    5.97404E-05
+ A3     109.0    0.000   A        6.9132E-03    5.97404E-05
+ A4     109.0    0.000   A        6.9132E-03    5.97404E-05
+ B      109.0    0.000   A        0             5.97404E-05
+ Di     109.0    0.000   A        6.9132E-03    5.97404E-05
+
+[ nonbond_params ]
+;i     j      func     V(C6, attra)    W(C12, repul)
+; self-self interactions
+ A1    A1     1        0                5.907375E-04
+ A2    A2     1        0                5.907375E-04
+ A3    A3     1        0                5.907375E-04
+ A4    A4     1        0                5.907375E-04
+ B     B      1        0                5.974044E-04
+ Di    Di     1        6.000000E+00     3.000000E+00
+
+; coil1 + coil2  |   coil3 + coil4
+ A1    A2     1        1.030792E+00     3.541775E-02
+ A3    A4     1        1.030792E+00     3.541775E-02 
+ A1    A3     1        0                5.907375E-04
+ A1    A4     1        0                5.907375E-04
+ A2    A3     1        0                5.907375E-04
+ A2    A4     1        0                5.907375E-04
+; dimer-other cross interactions
+ A1    B      1        0                5.907375E-04
+ A1    Di     1        0                5.907375E-04
+; dimer-other cross interactions
+ A2    B      1        0                5.907375E-04
+ A2    Di     1        0                5.907375E-04
+; dimer-other cross interactions
+ A3    B      1        0                5.907375E-04
+ A3    Di     1        0                5.907375E-04
+; dimer-other cross interactions
+ A4    B      1        0                5.907375E-04
+ A4    Di     1        0                5.907375E-04
+; backbone (noninteracting) interactions
+ B     Di     1        0                5.97404E-04
+
+
+; Include the individual .itps for different molecules
+; This is set MANUALLY - DONT FORGET!
+#include "itp_s1hs3h.itp"
+#include "itp_s2hs4h.itp"
+#include "itp_s1h.itp"
+
+[ system ]
+; Name
+MCP-mixture-simulation
+
+[ molecules ]
+;moleculetype-name    # molecules
+s1hs3h                6
+s2hs4h                6
+s1h                   6
+s1hs3h                6
+s2hs4h                6
+s1h                   6
+s1hs3h                6
+s2hs4h                6
+s1h                   6
+s1hs3h                6
+s2hs4h                6
+s1h                   6
+s1hs3h                6
+s2hs4h                6
+s1h                   6

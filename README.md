@@ -12,6 +12,10 @@ Generating data for density profiles, molecular cluster analyses, and mean squar
 ### MD\_parameter\_files
 This folder contains the `.mdp` files for the single molecule and slab simulation procedures (at both 20 us and 40 us).
 
+### MSD\_analysis
+This folder contains the data files and the custom python script to analysis the MSD data to generate effective diffusion coefficients for the proteins. `.csv` files contain average MSD (averaged over all proteins in the slab simulation) for three replicates for the given protein at the listed temperature. Column 1 is the lag-time (tau, ps) and columns 2-4 are the average MSD for all three replicates. `MSD_bootstrap_analysis.py` has the analysis files hardcoded and should only need to be run, with no modification, to generate estimates of effective diffusion coefficients and generate the MSD plot. Keep in mind that because we use bootstrap sampling to estimate diffusion coefficients and error of the estimates, the exact numerical values reported in the paper will not be regenerated.
+Internal codenames are used in the file names: 'mcp1' is the simulation of {(gs-S1h-gs-S3h)3 + (gs-S2h)3(gs-S4h)3}; and 'mcp6' is the simulation of {(gs-P5f-gs-P13f)3 + (gs-P6f)3(gs-P14f)3}.
+
 ### ProteinBuilding
 This folder contains scripts to do protein building, but *only for* proteins with parallel and antiparallel coil segments. Instructions and an example are provided. 
 
@@ -20,7 +24,10 @@ Instructions for making proteins that do not specify orientation (anything that 
 As described in the paper, once a protein is made, you can then run single molecule simulations on it using the appropriate `.mdp` files (described above) and then pack configurations of a desired density into a box of desired size using `Packmol v. 20.3.2`.
 
 ### Topologies
-This folder contains all of the topology files (`.itp` and `.top`) for all of the proteins described in this manuscript. Each protein pair is given its own folder. `.top` files are predesigned for slab simulations.  
+This folder contains all of the topology files (`.itp` and `.top`) for all of the proteins described in this manuscript. Each protein pair is given its own folder. `.top` files are predesigned for slab simulations.
+
+#### Additional\_combinations
+This folder contains topology (`.itp` and `.top`) files for the additional combinations of mixtures of peptides from Supplementary Figure 15.
 
 
 ## Guidelines for reproducing data
